@@ -24,6 +24,7 @@ echo "<?php\n";
 namespace <?= $generator->nsModel ?>\base;
 
 use Yii;
+use yii\base\NotSupportedException;
 <?php if ($enabled->createdAt || $enabled->updatedAt): ?>
 use yii\behaviors\TimestampBehavior;
 <?php endif; ?>
