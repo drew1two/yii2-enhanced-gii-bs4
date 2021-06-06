@@ -98,7 +98,7 @@ class Generator extends BaseGenerator {
             [['skippedColumns', 'skippedRelations',
                 'blameableValue', 'nameAttribute', 'hiddenColumns', 'timestampValue',
                 'optimisticLock', 'createdAt', 'updatedAt', 'createdBy', 'updatedBy',
-                'blameableValue', 'UUIDColumn', 'deletedBy', 'deletedByValue', 'deletedAt', 'deletedAtValue'], 'safe'],
+                'blameableValue', 'UUIDColumn', 'deletedBy', 'deletedByValue', 'deletedAt', 'deletedAtValue', 'deletedAtValueRestored'], 'safe'],
         ]);
     }
 
