@@ -14,7 +14,10 @@ $fk = $generator->generateFK($tableSchema);
 
 use kartik\grid\GridView;
 use yii\data\ArrayDataProvider;
-
+/**
+* @var <?= ltrim($generator->nsModel, '\\').'\\'.$relations[$generator::REL_CLASS] ?> $model
+*
+*/
     $dataProvider = new ArrayDataProvider([
         'allModels' => $model-><?= $relName; ?>,
 <?php if (count($tableSchema->primaryKey) > 1):

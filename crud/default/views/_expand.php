@@ -16,6 +16,10 @@ $pk = empty($generator->tableSchema->primaryKey) ? $generator->tableSchema->getC
 use kartik\helpers\Html;
 use kartik\tabs\TabsX;
 use yii\helpers\Url;
+/**
+* @var yii\web\View $this
+* @var <?= ltrim($generator->nsModel, '\\').'\\'.$relations[$generator::REL_CLASS] ?> $model
+*/
 
 /**
 * @var yii\web\View $this
