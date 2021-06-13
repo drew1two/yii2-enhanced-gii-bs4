@@ -17,9 +17,11 @@ $fk = $generator->generateFK($tableSchema);
 echo "<?php\n";
 ?>
 
-/* @var yii\web\View $this */
-<?= !empty($generator->searchModelClass) ? "/* @var \$searchModel " . ltrim($generator->searchModelClass, '\\') . " */\n" : '' ?>
-/* @var yii\data\ActiveDataProvider $dataProvider */
+/**
+ * @var yii\web\View $this
+ * @var yii\data\ActiveDataProvider $dataProvider
+ *<?= !empty($generator->searchModelClass) ? " @var " . ltrim($generator->searchModelClass . " \$searchModel ", '\\') . " */\n" : '' ?>
+ */
 
 use kartik\helpers\Html;
 use kartik\export\ExportMenu;
