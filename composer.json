@@ -40,7 +40,7 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "git@github.com:drew1two/yii2-relation-trait.git",
+            "url": "https://github.com/drew1two/yii2-relation-trait.git",
             "options": {
                 "ssh2": {
                     "username": "git",
