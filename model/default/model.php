@@ -63,7 +63,7 @@ use yii\web\IdentityInterface;
  */
 class <?= $className ?> extends <?= ($isTree) ? '\kartik\tree\models\Tree' : $baseModelClassName ?><?= ($generator->isBaseIdentityClass) ? ' implements IdentityInterface' . "\n" : '' . "\n" ?>
 {
-<?= (!$isTree) ? "  use \\mootensai\\relation\\RelationTrait;\n" : "" ?>
+<?= (!$isTree) ? "  use \\drew1two\\relation\\RelationTrait;\n" : "" ?>
 
 <?php if ($generator->generateYiiUserModelMethods): ?>
     const STATUS_DELETED = 0;
