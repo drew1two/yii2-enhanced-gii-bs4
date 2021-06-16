@@ -5,7 +5,7 @@ use yii\helpers\StringHelper;
 /**
  * This is the template for generating a CRUD controller class file.
  * @var yii\web\View $this
- * @var mootensai\enhancedgii\crud\Generator $generator
+ * @var drew1two\enhancedgii\crud\Generator $generator
  * @var array $relations
  */
 

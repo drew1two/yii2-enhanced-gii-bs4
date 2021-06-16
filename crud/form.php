@@ -2,7 +2,7 @@
 /**
  * @var yii\web\View $this
  * @var kartik\widgets\ActiveForm $form
- * @var mootensai\enhancedgii\crud\Generator $generator
+ * @var drew1two\enhancedgii\crud\Generator $generator
  */
 ?>
 <blockquote class="alert-warning" style="font-size: small">

@@ -9,7 +9,7 @@ use yii\helpers\StringHelper;
  * Date: 17-Jun-16
  * Time: 1:10 PM
  * @var yii\web\View $this
- * @var mootensai\enhancedgii\crud\Generator $generator
+ * @var drew1two\enhancedgii\crud\Generator $generator
  */
 
 $urlParams = $generator->generateUrlParams();

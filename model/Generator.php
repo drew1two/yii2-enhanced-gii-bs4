@@ -1,8 +1,8 @@
 <?php
 
-namespace mootensai\enhancedgii\model;
+namespace drew1two\enhancedgii\model;
 
-use mootensai\enhancedgii\BaseGenerator;
+use drew1two\enhancedgii\BaseGenerator;
 use Yii;
 use yii\base\NotSupportedException;
 use yii\db\Schema;
