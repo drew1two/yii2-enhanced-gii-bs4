@@ -18,7 +18,6 @@
         "php": ">=7.3.0",
         "yiisoft/yii2": "*",
         "mootensai/yii2-uuid-behavior": "1.0.0",
-        "drew1two/yii2-relation-trait": "dev-master",
         "mootensai/yii2-jsblock": "1.0.0",
         "mootensai/yii2-optimistic-lock-validator": "0.0.1",
         "kartik-v/yii2-builder": "v1.6.7",
@@ -36,18 +35,5 @@
     },
     "extra": {
         "bootstrap": "drew1two\\enhancedgii\\Bootstrap"
-    },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/drew1two/yii2-relation-trait.git",
-            "options": {
-                "ssh2": {
-                    "username": "git",
-                    "privkey_file": "~/.ssh/id_ed25519",
-                    "pubkey_file": "~/.ssh/id_ed25519.pub"
-                }
-            }
-        }
-    ]
+    }
 }
