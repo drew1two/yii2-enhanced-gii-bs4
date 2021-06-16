@@ -5,7 +5,7 @@ use yii\helpers\StringHelper;
 
 /**
  * @var yii\web\View $this
- * @var mootensai\enhancedgii\crud\Generator $generator
+ * @var drew1two\enhancedgii\crud\Generator $generator
  * @var int $count
  */
 $urlParams = $generator->generateUrlParams();

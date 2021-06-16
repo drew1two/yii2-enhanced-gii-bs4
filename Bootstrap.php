@@ -1,6 +1,6 @@
 <?php
 
-namespace mootensai\enhancedgii;
+namespace drew1two\enhancedgii;
 
 use yii\base\Application;
 use yii\base\BootstrapInterface;
@@ -30,13 +30,13 @@ class Bootstrap implements BootstrapInterface
 //        \Yii::setAlias('@mtengii','@vendor/mootensai/yii2-enhanced-gii');
         if ($app->hasModule('gii')) {
             if (!isset($app->getModule('gii')->generators['enhanced-gii'])) {
-                $app->getModule('gii')->generators['enhanced-gii-model']['class'] = 'mootensai\enhancedgii\model\Generator';
-                $app->getModule('gii')->generators['enhanced-gii-crud']['class'] = 'mootensai\enhancedgii\crud\Generator';
+                $app->getModule('gii')->generators['enhanced-gii-model']['class'] = 'drew1two\enhancedgii\model\Generator';
+                $app->getModule('gii')->generators['enhanced-gii-crud']['class'] = 'drew1two\enhancedgii\crud\Generator';
 //                $app->getModule('gii')->generators['enhanced-gii-crud']['templates'] = [
 //                    'default' => '@mtengii/crud/default',
 //                    'nested' => '@mtengii/crud/nested'
 //                ];
-                $app->getModule('gii')->generators['enhanced-gii-migration'] = 'mootensai\enhancedgii\migration\Generator';
+                $app->getModule('gii')->generators['enhanced-gii-migration'] = 'drew1two\enhancedgii\migration\Generator';
             }
         }
     }

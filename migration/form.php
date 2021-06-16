@@ -1,7 +1,7 @@
 <?php
 /**
  * @var yii\web\View $this
- * @var mootensai\enhancedgii\migration\Generator $generator
+ * @var drew1two\enhancedgii\migration\Generator $generator
  * @var kartik\widgets\ActiveForm $form
  */
 

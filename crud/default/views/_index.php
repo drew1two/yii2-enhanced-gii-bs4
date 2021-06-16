@@ -1,6 +1,6 @@
 <?php
 /**
- * @var mootensai\enhancedgii\crud\Generator $generator
+ * @var drew1two\enhancedgii\crud\Generator $generator
  * @var int $count
  */
 $tableSchema = $generator->getTableSchema();

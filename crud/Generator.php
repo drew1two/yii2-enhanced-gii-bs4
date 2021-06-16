@@ -1,5 +1,5 @@
 <?php
-namespace mootensai\enhancedgii\crud;
+namespace drew1two\enhancedgii\crud;
 
 use Yii;
 use yii\db\ActiveRecord;
@@ -19,7 +19,7 @@ use yii\web\Controller;
  * @author Yohanes Candrajaya <moo.tensai@gmail.com>
  * @since 2.0
  */
-class Generator extends \mootensai\enhancedgii\BaseGenerator
+class Generator extends \drew1two\enhancedgii\BaseGenerator
 {
 
     public $nameAttribute = 'name, title, username';
