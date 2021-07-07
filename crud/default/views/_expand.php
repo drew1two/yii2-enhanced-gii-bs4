@@ -8,7 +8,50 @@
 
 use yii\helpers\Inflector;
 use yii\helpers\StringHelper;
-
+if (count(array_keys($relations)) === 1) {
+    // TODO:- workout why this $relation array is returned to us with the relationName as the key.
+    // ie:- array(1) {
+    //  ["emailTemplateTokenLookups"]=>
+    //  array(7) {
+    //    [0]=>
+    //    string(98) "return $this->hasMany(\common\models\EmailTemplateTokenLookup::className(), ['token_id' => 'id']);"
+    //    [1]=>
+    //    string(24) "EmailTemplateTokenLookup"
+    //    [2]=>
+    //    bool(true)
+    //    [3]=>
+    //    string(27) "email_template_token_lookup"
+    //    [4]=>
+    //    string(2) "id"
+    //    [5]=>
+    //    string(8) "token_id"
+    //    [6]=>
+    //    int(0)
+    //  }
+    //}
+    // It should be returning the sub array
+    // ie:-
+    //  array(7) {
+    //    [0]=>
+    //    string(98) "return $this->hasMany(\common\models\EmailTemplateTokenLookup::className(), ['token_id' => 'id']);"
+    //    [1]=>
+    //    string(24) "EmailTemplateTokenLookup"
+    //    [2]=>
+    //    bool(true)
+    //    [3]=>
+    //    string(27) "email_template_token_lookup"
+    //    [4]=>
+    //    string(2) "id"
+    //    [5]=>
+    //    string(8) "token_id"
+    //    [6]=>
+    //    int(0)
+    //  }
+    $relationsSub = reset($relations);
+    $relationName = $relationsSub[$generator::REL_CLASS];
+} else {
+    $relationName = $relations[$generator::REL_CLASS];
+}
 $pk = empty($generator->tableSchema->primaryKey) ? $generator->tableSchema->getColumnNames()[0] : $generator->tableSchema->primaryKey[0];
 ?>
 <?= "<?php" ?>
@@ -18,7 +61,7 @@ use kartik\tabs\TabsX;
 use yii\helpers\Url;
 /**
 * @var yii\web\View $this
-* @var <?= ltrim($generator->nsModel, '\\').'\\'.$relations[$generator::REL_CLASS] ?> $model
+* @var <?= ltrim($generator->nsModel, '\\').'\\'.$relationName ?> $model
 */
 
 /**
