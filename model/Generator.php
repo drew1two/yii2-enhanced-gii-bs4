@@ -477,34 +477,46 @@ class Generator extends BaseGenerator {
         }
         $rules = [];
         foreach ($types as $type => $columns) {
-            $rules[] = "[['" . implode("', '", $columns) . "'], '$type']";
+            $rules[] = "'".$type."Array' => [['" . implode("', '", $columns) . "'], '$type']";
         }
         foreach ($lengths as $length => $columns) {
-            $rules[] = "[['" . implode("', '", $columns) . "'], 'string', 'max' => $length]";
+            $rules[] = "'stringMax".$length."Array' => [['" . implode("', '", $columns) . "'], 'string', 'max' => $length]";
         }
 
         // Unique indexes rules
         try {
             $db = $this->getDbConnection();
             $uniqueIndexes = $db->getSchema()->findUniqueIndexes($table);
+            $uniqueArray = [];
+            $emailArray = [];
             foreach ($uniqueIndexes as $uniqueColumns) {
                 // Avoid validating auto incremental columns
                 if (!$this->isColumnAutoIncremental($table, $uniqueColumns)) {
+                    if (strpos(strtolower($uniqueColumns[0]), 'email') !== false) {
+                        $emailArray[] = $uniqueColumns[0];
+                    }
                     $attributesCount = count($uniqueColumns);
 
                     if ($attributesCount == 1) {
-                        $rules[] = "[['" . $uniqueColumns[0] . "'], 'unique']";
+                        $uniqueArray[] = $uniqueColumns[0];
                     } elseif ($attributesCount > 1) {
                         $labels = array_intersect_key($this->generateLabels($table), array_flip($uniqueColumns));
                         $lastLabel = array_pop($labels);
                         $columnsList = implode("', '", $uniqueColumns);
-                        $rules[] = "[['" . $columnsList . "'], 'unique', 'targetAttribute' => ['" . $columnsList . "'], 'message' => 'The combination of " . implode(', ', $labels) . " and " . $lastLabel . " has already been taken.']";
+                        $rules[] = "'".$lastLabel."UniqueArray' => [['" . $columnsList . "'], 'unique', 'targetAttribute' => ['" . $columnsList . "'], 'message' => 'The combination of " . implode(', ', $labels) . " and " . $lastLabel . " has already been taken.']";
                     }
                 }
             }
+
+            if (count($uniqueArray) > 0) {
+                $rules[] = "'uniqueArray' => [['" . implode("', '", $uniqueArray) . "'], 'unique']";
+            }
+            if (count($emailArray) > 0) {
+                $rules[] = "'emailArray' => [['" . implode("', '", $emailArray) . "'], 'email']";
+            }
             if (!empty($this->optimisticLock) && isset($table->columns[$this->optimisticLock])) {
-                $rules[] = "[['" . $this->optimisticLock . "'], 'default', 'value' => '0']";
-                $rules[] = "[['" . $this->optimisticLock . "'], 'mootensai\\components\\OptimisticLockValidator']";
+                $rules[] = "'lockDefault' => [['" . $this->optimisticLock . "'], 'default', 'value' => 0]";
+                $rules[] = "'lockValidator' => [['" . $this->optimisticLock . "'], 'mootensai\\components\\OptimisticLockValidator']";
             }
         } catch (NotSupportedException $e) {
             // doesn't support unique indexes information...do nothing
