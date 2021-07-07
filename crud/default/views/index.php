@@ -20,7 +20,7 @@ echo "<?php\n";
 /**
  * @var yii\web\View $this
  * @var yii\data\ActiveDataProvider $dataProvider
- *<?= !empty($generator->searchModelClass) ? " @var " . ltrim($generator->searchModelClass . " \$searchModel ", '\\') . " */\n" : '' ?>
+ *<?= !empty($generator->searchModelClass) ? " @var " . ltrim($generator->searchModelClass . " \$searchModel ", '\\') . "\n" : '' ?>
  */
 
 use kartik\helpers\Html;
