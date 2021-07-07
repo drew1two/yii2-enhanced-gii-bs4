@@ -36,8 +36,14 @@ class <?= $className ?> extends Base<?= $className . "\n" ?>
      */
     public function rules()
     {
-        return array_replace_recursive(parent::rules(),
-	    [<?= "\n            " . implode(",\n            ", $rules) . "\n        " ?>]);
+        $parent = parent::rules();
+//        unset($parent['requiredArray']);
+        $rules = [
+            //modified or new rules.
+        ];
+
+        return array_merge($parent,$rules);
+
     }
 	
 <?php if ($generator->generateAttributeHints): ?>

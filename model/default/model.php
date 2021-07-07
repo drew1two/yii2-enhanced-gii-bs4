@@ -50,6 +50,7 @@ use yii\web\IdentityInterface;
  * This is the base model class for table "<?= $generator->generateTableName($tableName) ?>".
  *
 <?php foreach ($tableSchema->columns as $column): ?>
+<?php if ($column->type === 'bigint') {$column->phpType = 'integer';} ?>
  * @property <?= "{$column->phpType} \${$column->name}\n" ?>
 <?php endforeach; ?>
 <?php if (!empty($relations)): ?>
@@ -103,12 +104,14 @@ class <?= $className ?> extends <?= ($isTree) ? '\kartik\tree\models\Tree' : $ba
     }
 
 <?php endif; ?>
-<?php if ($generator->generateYiiUserModelMethods) {
-    $arr1 = "[['status'], 'default', 'value' => self::STATUS_INACTIVE]";
-    $arr2 = "[['status'], 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED]]";
-    array_unshift($rules, $arr2);
-    array_unshift($rules, $arr1);
-}?>
+<?php
+    if ($generator->generateYiiUserModelMethods) {
+        $arr1 = "'statusDefault' => [['status'], 'default', 'value' => self::STATUS_INACTIVE]";
+        $arr2 = "'statusRange' => [['status'], 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED]]";
+        array_unshift($rules, $arr2);
+        array_unshift($rules, $arr1);
+    }
+?>
     /**
      * {@inheritdoc}
      */
