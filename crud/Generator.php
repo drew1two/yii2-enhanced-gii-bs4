@@ -90,8 +90,8 @@ class Generator extends \drew1two\enhancedgii\BaseGenerator
             [['tableName'], 'validateTableName'],
 //            [['searchModelClass'], 'compare', 'compareAttribute' => 'modelClass', 'operator' => '!==', 'message' => 'Search Model Class must not be equal to Model Class.'],
             [['modelClass', 'baseControllerClass', 'searchModelClass', 'db', 'queryClass'], 'match', 'pattern' => '/^[\w\\\\]*$/', 'message' => 'Only word characters and backslashes are allowed.'],
-//            [['modelClass'], 'validateClass', 'params' => ['extends' => BaseActiveRecord::className()]],
-            [['baseControllerClass'], 'validateClass', 'params' => ['extends' => Controller::className()]],
+//            [['modelClass'], 'validateClass', 'params' => ['extends' => BaseActiveRecord::class]],
+            [['baseControllerClass'], 'validateClass', 'params' => ['extends' => Controller::class]],
             [['db'], 'validateDb'],
             [['controllerClass'], 'match', 'pattern' => '/Controller$/', 'message' => 'Controller class name must be suffixed with "Controller".'],
             [['controllerClass'], 'match', 'pattern' => '/(^|\\\\)[A-Z][^\\\\]+Controller$/', 'message' => 'Controller class name must start with an uppercase letter.'],
@@ -709,7 +709,7 @@ if (array_key_exists($attribute, $fk) && $attribute) {
             return "'$attribute' => ['type' => TabularForm::INPUT_TEXTAREA]";
         } elseif ($column->dbType === 'date') {
             return "'$attribute' => ['type' => TabularForm::INPUT_WIDGET,
-            'widgetClass' => \\kartik\\datecontrol\\DateControl::classname(),
+            'widgetClass' => \\kartik\\datecontrol\\DateControl::class,
             'options' => [
                 'type' => \\kartik\\datecontrol\\DateControl::FORMAT_DATE,
                 'saveFormat' => 'php:Y-m-d',
@@ -724,7 +724,7 @@ if (array_key_exists($attribute, $fk) && $attribute) {
         ]";
         } elseif ($column->dbType === 'time') {
             return "'$attribute' => ['type' => TabularForm::INPUT_WIDGET,
-            'widgetClass' => \\kartik\\datecontrol\\DateControl::classname(),
+            'widgetClass' => \\kartik\\datecontrol\\DateControl::class,
             'options' => [
                 'type' => \\kartik\\datecontrol\\DateControl::FORMAT_TIME,
                 'saveFormat' => 'php:H:i:s',
@@ -739,7 +739,7 @@ if (array_key_exists($attribute, $fk) && $attribute) {
         ]";
         } elseif ($column->dbType === 'datetime') {
             return "'$attribute' => ['type' => TabularForm::INPUT_WIDGET,
-            'widgetClass' => \\kartik\\datecontrol\\DateControl::classname(),
+            'widgetClass' => \\kartik\\datecontrol\\DateControl::class,
             'options' => [
                 'type' => \\kartik\\datecontrol\\DateControl::FORMAT_DATETIME,
                 'saveFormat' => 'php:Y-m-d H:i:s',
@@ -761,7 +761,7 @@ if (array_key_exists($attribute, $fk) && $attribute) {
             $output = "'$attribute' => [
             'label' => '$humanize',
             'type' => TabularForm::INPUT_WIDGET,
-            'widgetClass' => \\kartik\\widgets\\Select2::className(),
+            'widgetClass' => \\kartik\\widgets\\Select2::class,
             'options' => [
                 'data' => \\yii\\helpers\\ArrayHelper::map($fkClassFQ::find()->orderBy('$labelCol')->asArray()->all(), '{$rel[self::REL_PRIMARY_KEY]}', '$labelCol'),
                 'options' => ['placeholder' => " . $this->generateString('Choose ' . $humanize) . "],
@@ -832,7 +832,7 @@ if (array_key_exists($attribute, $fk) && $attribute) {
         } elseif ($column->type === 'text' || $column->dbType === 'tinytext') {
             return "\$form->field($model, '$attribute')->textarea(['rows' => 6])";
         } elseif ($column->dbType === 'date') {
-            return "\$form->field($model, '$attribute')->widget(\\kartik\\datecontrol\\DateControl::classname(), [
+            return "\$form->field($model, '$attribute')->widget(\\kartik\\datecontrol\\DateControl::class, [
         'type' => \\kartik\\datecontrol\\DateControl::FORMAT_DATE,
         'saveFormat' => 'php:Y-m-d',
         'ajaxConversion' => true,
@@ -844,7 +844,7 @@ if (array_key_exists($attribute, $fk) && $attribute) {
         ],
     ]);";
         } elseif ($column->dbType === 'time') {
-            return "\$form->field($model, '$attribute')->widget(\\kartik\\datecontrol\\DateControl::className(), [
+            return "\$form->field($model, '$attribute')->widget(\\kartik\\datecontrol\\DateControl::class, [
         'type' => \\kartik\\datecontrol\\DateControl::FORMAT_TIME,
         'saveFormat' => 'php:H:i:s',
         'ajaxConversion' => true,
@@ -856,7 +856,7 @@ if (array_key_exists($attribute, $fk) && $attribute) {
         ]
     ]);";
         } elseif ($column->dbType === 'datetime') {
-            return "\$form->field($model, '$attribute')->widget(\\kartik\\datecontrol\\DateControl::classname(), [
+            return "\$form->field($model, '$attribute')->widget(\\kartik\\datecontrol\\DateControl::class, [
         'type' => \\kartik\\datecontrol\\DateControl::FORMAT_DATETIME,
         'saveFormat' => 'php:Y-m-d H:i:s',
         'ajaxConversion' => true,
@@ -873,7 +873,7 @@ if (array_key_exists($attribute, $fk) && $attribute) {
             $humanize = Inflector::humanize($rel[3]);
 //            $pk = empty($this->tableSchema->primaryKey) ? $this->tableSchema->getColumnNames()[0] : $this->tableSchema->primaryKey[0];
             $fkClassFQ = "\\" . $this->nsModel . "\\" . $rel[1];
-            $output = "\$form->field($model, '$attribute')->widget(\\kartik\\widgets\\Select2::classname(), [
+            $output = "\$form->field($model, '$attribute')->widget(\\kartik\\widgets\\Select2::class, [
         'data' => \\yii\\helpers\\ArrayHelper::map($fkClassFQ::find()->orderBy('$rel[4]')->asArray()->all(), '$rel[4]', '$labelCol'),
         'options' => ['placeholder' => " . $this->generateString('Choose ' . $humanize) . "],
         'pluginOptions' => [

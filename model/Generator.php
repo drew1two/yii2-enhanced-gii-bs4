@@ -88,7 +88,7 @@ class Generator extends BaseGenerator {
             [['tableName'], 'validateTableName'],
             [['nsModel', 'baseModelClass', 'queryNs', 'queryBaseClass'], 'match', 'pattern' => '/^[\w\\\\]+$/', 'message' => 'Only word characters and backslashes are allowed.'],
             [['modelClass', 'baseModelClass', 'db'], 'match', 'pattern' => '/^[\w\\\\]*$/', 'message' => 'Only word characters and backslashes are allowed.'],
-            [['queryBaseClass', 'queryClass'], 'validateClass', 'params' => ['extends' => ActiveQuery::className()]],
+            [['queryBaseClass', 'queryClass'], 'validateClass', 'params' => ['extends' => ActiveQuery::class]],
             [['db'], 'validateDb'],
             [['enableI18N', 'generateQuery', 'generateLabelsFromComments', 'isBaseIdentityClass', 'generateYiiUserModelMethods',
                 'useTablePrefix', 'generateMigrations', 'generateAttributeHints', 'generateBaseOnly'], 'boolean'],
