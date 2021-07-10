@@ -8,7 +8,7 @@
 
 use yii\helpers\Inflector;
 use yii\helpers\StringHelper;
-if (count(array_keys($relations)) === 1) {
+if (!is_numeric(array_keys($relations)[0])) {
     // TODO:- workout why this $relation array is returned to us with the relationName as the key.
     // ie:- array(1) {
     //  ["emailTemplateTokenLookups"]=>
