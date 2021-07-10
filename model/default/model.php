@@ -189,7 +189,7 @@ class <?= $className ?> extends <?= ($isTree) ? '\kartik\tree\models\Tree' : $ba
         return <?= ($isTree) ? "array_merge(parent::behaviors(), " : ""; ?>[
 <?php if ($enabled->createdAt || $enabled->updatedAt):?>
             'timestamp' => [
-                'class' => TimestampBehavior::className(),
+                'class' => TimestampBehavior::class,
 <?php if ($enabled->createdAt):?>
                 'createdAtAttribute' => '<?= $generator->createdAt?>',
 <?php else :?>
@@ -207,7 +207,7 @@ class <?= $className ?> extends <?= ($isTree) ? '\kartik\tree\models\Tree' : $ba
 <?php endif; ?>
 <?php if ($enabled->createdBy || $enabled->updatedBy):?>
             'blameable' => [
-                'class' => BlameableBehavior::className(),
+                'class' => BlameableBehavior::class,
 <?php if ($enabled->createdBy):?>
                 'createdByAttribute' => '<?= $generator->createdBy?>',
 <?php else :?>
@@ -225,7 +225,7 @@ class <?= $className ?> extends <?= ($isTree) ? '\kartik\tree\models\Tree' : $ba
 <?php endif; ?>
 <?php if ($generator->UUIDColumn):?>
             'uuid' => [
-                'class' => UUIDBehavior::className(),
+                'class' => UUIDBehavior::class,
 <?php if (!empty($generator->UUIDColumn) && isset($generator->tableSchema->columns[$generator->UUIDColumn])):?>
                 'column' => '<?= $generator->UUIDColumn?>',
 <?php endif; ?>

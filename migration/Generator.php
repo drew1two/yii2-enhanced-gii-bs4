@@ -239,7 +239,7 @@ class Generator extends \yii\gii\Generator
     {
         if ($this->constans === null) {
             $this->constans = [];
-            $ref = new \ReflectionClass(Schema::className());
+            $ref = new \ReflectionClass(Schema::class);
             foreach ($ref->getConstants() as $constName => $constValue) {
                 if (strpos($constName, 'TYPE_') === 0) {
                     $this->constans[$constValue] = '$this->' . $constValue;

@@ -14,7 +14,7 @@ if (!is_numeric(array_keys($relations)[0])) {
     //  ["emailTemplateTokenLookups"]=>
     //  array(7) {
     //    [0]=>
-    //    string(98) "return $this->hasMany(\common\models\EmailTemplateTokenLookup::className(), ['token_id' => 'id']);"
+    //    string(98) "return $this->hasMany(\common\models\EmailTemplateTokenLookup::class, ['token_id' => 'id']);"
     //    [1]=>
     //    string(24) "EmailTemplateTokenLookup"
     //    [2]=>
@@ -33,7 +33,7 @@ if (!is_numeric(array_keys($relations)[0])) {
     // ie:-
     //  array(7) {
     //    [0]=>
-    //    string(98) "return $this->hasMany(\common\models\EmailTemplateTokenLookup::className(), ['token_id' => 'id']);"
+    //    string(98) "return $this->hasMany(\common\models\EmailTemplateTokenLookup::class, ['token_id' => 'id']);"
     //    [1]=>
     //    string(24) "EmailTemplateTokenLookup"
     //    [2]=>
