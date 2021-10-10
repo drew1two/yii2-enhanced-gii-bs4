@@ -25,11 +25,40 @@ namespace <?= $generator->queryNs ?>;
  */
 class <?= $className ?> extends <?= '\\' . ltrim($generator->queryBaseClass, '\\') . "\n" ?>
 {
-    /*public function active()
+/*
+    /**
+     * Select active users.
+     *
+     * @param ActiveQuery $query
+     */
+    public function active()
     {
-        $this->andWhere('[[status]]=1');
+        $this->andWhere(['status' => User::STATUS_ACTIVE]);
         return $this;
-    }*/
+    }
+
+    /**
+     * Select inactive users.
+     *
+     * @param ActiveQuery $query
+     */
+    public function inactive()
+    {
+        $this->andWhere(['status' => User::STATUS_INACTIVE]);
+        return $this;
+    }
+
+    /**
+     * Select deleted users.
+     *
+     * @param ActiveQuery $query
+     */
+    public function deleted()
+    {
+        $this->andWhere(['status' => User::STATUS_DELETED]);
+        return $this;
+    }
+*/
 
     /**
      * @inheritdoc
