@@ -33,7 +33,7 @@ class <?= $className ?> extends <?= '\\' . ltrim($generator->queryBaseClass, '\\
      */
     public function active()
     {
-        $this->andWhere(['status' => User::STATUS_ACTIVE]);
+        $this->andWhere(['status' => <?= $modelFullClassName ?>::STATUS_ACTIVE]);
         return $this;
     }
 
@@ -44,7 +44,7 @@ class <?= $className ?> extends <?= '\\' . ltrim($generator->queryBaseClass, '\\
      */
     public function inactive()
     {
-        $this->andWhere(['status' => User::STATUS_INACTIVE]);
+        $this->andWhere(['status' => <?= $modelFullClassName ?>::STATUS_INACTIVE]);
         return $this;
     }
 
@@ -55,7 +55,7 @@ class <?= $className ?> extends <?= '\\' . ltrim($generator->queryBaseClass, '\\
      */
     public function deleted()
     {
-        $this->andWhere(['status' => User::STATUS_DELETED]);
+        $this->andWhere(['status' => <?= $modelFullClassName ?>::STATUS_DELETED]);
         return $this;
     }
 */

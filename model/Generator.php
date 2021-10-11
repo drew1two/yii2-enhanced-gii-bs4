@@ -61,6 +61,7 @@ class Generator extends BaseGenerator {
     public $generateBaseOnly = false;
     public $isBaseIdentityClass = false;
     public $generateYiiUserModelMethods = false;
+    public $generateStatusDeclarations = false;
     public $UUIDColumn = 'id';
 
     /**
@@ -91,7 +92,7 @@ class Generator extends BaseGenerator {
             [['queryBaseClass', 'queryClass'], 'validateClass', 'params' => ['extends' => ActiveQuery::class]],
             [['db'], 'validateDb'],
             [['enableI18N', 'generateQuery', 'generateLabelsFromComments', 'isBaseIdentityClass', 'generateYiiUserModelMethods',
-                'useTablePrefix', 'generateMigrations', 'generateAttributeHints', 'generateBaseOnly'], 'boolean'],
+                'generateStatusDeclarations', 'useTablePrefix', 'generateMigrations', 'generateAttributeHints', 'generateBaseOnly'], 'boolean'],
             [['generateRelations'], 'in', 'range' => [self::RELATIONS_NONE, self::RELATIONS_ALL, self::RELATIONS_ALL_INVERSE]],
             [['messageCategory'], 'validateMessageCategory', 'skipOnEmpty' => false],
 
@@ -124,6 +125,7 @@ class Generator extends BaseGenerator {
             'generateBaseOnly' => 'Generate Base Model Only',
             'isBaseIdentityClass' => 'Is base Identity Class',
             'generateYiiUserModelMethods' => 'Generate Yii2 User Model Methods',
+            'generateStatusDeclarations' => 'Generate Status declarations',
             'deletedBy' => 'Column',
             'deletedByValue' => 'Value',
             'deletedByValueRestored' => 'Column Restored Value',
@@ -249,7 +251,8 @@ class Generator extends BaseGenerator {
             'generateBaseOnly' => 'This indicates whether the generator should generate extended model(where you write your code) or not. '
                 . 'You usually re-generate models when you make changes on your database.',
             'isBaseIdentityClass' => 'This incorporates Identity class methods into base model',
-            'generateYiiUserModelMethods' => 'Will generate yii2 User model methods ie:(findByUsername(), findByPasswordResetToken(), findByVerificationToken(), isPasswordResetTokenValid(), validatePassword(), setPassword(), generateAuthKey(), generatePasswordResetToken(), generateEmailVerificationToken(), removePasswordResetToken())'
+            'generateYiiUserModelMethods' => 'Will generate yii2 User model methods ie:(findByUsername(), findByPasswordResetToken(), findByVerificationToken(), isPasswordResetTokenValid(), validatePassword(), setPassword(), generateAuthKey(), generatePasswordResetToken(), generateEmailVerificationToken(), removePasswordResetToken())',
+            'generateStatusDeclarations' => 'Will generate in Base model:- STATUS_ACTIVE=10, STATUS_INACTIVE=9, STATUS_DELETED=0'
         ]);
     }
 
@@ -324,6 +327,7 @@ class Generator extends BaseGenerator {
             $this->isTree = !array_diff(self::getTreeColumns(), $tableSchema->columnNames);
             $this->isBaseIdentityClass = ($this->isBaseIdentityClass === '1');
             $this->generateYiiUserModelMethods = ($this->generateYiiUserModelMethods === '1');
+            $this->generateStatusDeclarations = ($this->generateStatusDeclarations === '1');
 //            $this->controllerClass = $this->nsController . '\\' . $modelClassName . 'Controller';
             $params = [
                 'tableName' => $tableName,
@@ -335,7 +339,8 @@ class Generator extends BaseGenerator {
                 'relations' => isset($relations[$tableName]) ? $relations[$tableName] : [],
                 'isTree' => $this->isTree,
                 'isBaseIdentityClass' => $this->isBaseIdentityClass,
-                'generateYiiUserModelMethods' => $this->generateYiiUserModelMethods
+                'generateYiiUserModelMethods' => $this->generateYiiUserModelMethods,
+                'generateStatusDeclarations' => $this->generateStatusDeclarations
             ];
             // model :
             $files[] = new CodeFile(

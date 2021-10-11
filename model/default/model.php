@@ -66,7 +66,7 @@ class <?= $className ?> extends <?= ($isTree) ? '\kartik\tree\models\Tree' : $ba
 {
 <?= (!$isTree) ? "  use \\drew1two\\relation\\RelationTrait;\n" : "" ?>
 
-<?php if ($generator->generateYiiUserModelMethods): ?>
+<?php if ($generator->generateYiiUserModelMethods || $generator->generateStatusDeclarations): ?>
     const STATUS_DELETED = 0;
     const STATUS_INACTIVE = 9;
     const STATUS_ACTIVE = 10;
