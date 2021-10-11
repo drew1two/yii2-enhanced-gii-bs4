@@ -25,7 +25,7 @@ namespace <?= $generator->queryNs ?>;
  */
 class <?= $className ?> extends <?= '\\' . ltrim($generator->queryBaseClass, '\\') . "\n" ?>
 {
-/*
+
     /**
      * Select active <?= $modelFullClassName ?>s.
      *
@@ -58,7 +58,6 @@ class <?= $className ?> extends <?= '\\' . ltrim($generator->queryBaseClass, '\\
         $this->andWhere(['status' => <?= $modelFullClassName ?>::STATUS_DELETED]);
         return $this;
     }
-*/
 
     /**
      * @inheritdoc
