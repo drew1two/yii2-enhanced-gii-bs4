@@ -27,7 +27,7 @@ class <?= $className ?> extends <?= '\\' . ltrim($generator->queryBaseClass, '\\
 {
 /*
     /**
-     * Select active users.
+     * Select active <?= $modelFullClassName ?>s.
      *
      * @param ActiveQuery $query
      */
@@ -38,7 +38,7 @@ class <?= $className ?> extends <?= '\\' . ltrim($generator->queryBaseClass, '\\
     }
 
     /**
-     * Select inactive users.
+     * Select inactive <?= $modelFullClassName ?>s.
      *
      * @param ActiveQuery $query
      */
@@ -49,7 +49,7 @@ class <?= $className ?> extends <?= '\\' . ltrim($generator->queryBaseClass, '\\
     }
 
     /**
-     * Select deleted users.
+     * Select deleted <?= $modelFullClassName ?>s.
      *
      * @param ActiveQuery $query
      */
