@@ -63,6 +63,13 @@ echo $form->field($generator, 'queryBaseClass');
             <?= $form->field($generator, 'isBaseIdentityClass')->checkbox(); ?>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-6">
+            <?= $form->field($generator, 'generateStatusDeclarations')->checkbox(); ?>
+        </div>
+        <div class="col-md-6">
+        </div>
+    </div>
 <?= $form->field($generator, 'optimisticLock'); ?>
 <?= "<h4>Timestamp Behaviors</h4>"; ?>
     <div class="row">
