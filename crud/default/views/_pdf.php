@@ -95,7 +95,7 @@ if($provider<?= $rel[1] ?>->totalCount){
             'type' => GridView::TYPE_PRIMARY,
             'heading' => Html::encode(<?= $generator->generateString(Inflector::camel2words($rel[1])) ?>),
         ],
-        'panelHeadingTemplate' => '<h4>{heading}</h4>{summary}',
+        'panelHeadingTemplate' => '<h4>{title}</h4>{summary}',
         'toggleData' => false,
         'columns' => $gridColumn<?= $rel[1]."\n" ?>
     ]);
