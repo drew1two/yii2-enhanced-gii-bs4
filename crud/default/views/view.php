@@ -36,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="<?= ($generator->saveAsNew) ? "col-sm-8" : "col-sm-9";?>">
             <h2><?= "<?= " ?><?= $generator->generateString(Inflector::camel2words(StringHelper::basename($generator->modelClass))) ?>.' '. Html::encode($this->title) ?></h2>
         </div>
-        <div class="<?= ($generator->saveAsNew) ? "col-sm-4" : "col-sm-3";?>" style="margin-top: 15px">
+        <div class="<?= ($generator->saveAsNew) ? "col-sm-4" : "col-sm-3";?>">
 <?php if ($generator->pdf): ?>
 <?= "<?= " ?>
             <?= "
@@ -68,6 +68,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 
     <div class="row">
+        <div class="col-sm-12" style="margin-top: 15px">
 <?= "<?php \n" ?>
     $gridColumn = [
 <?php
@@ -94,11 +95,13 @@ if ($tableSchema === false) {
         'attributes' => $gridColumn
     ]);
 ?>
+        </div>
     </div>
 <?php foreach ($relations as $name => $rel): ?>
 <?php if ($rel[2] && isset($rel[3]) && !in_array($name, $generator->skippedRelations)): ?>
     
     <div class="row">
+        <div class="col-sm-12" style="margin-top: 15px">
 <?= "<?php\n" ?>
 if($provider<?= $rel[1] ?>->totalCount){
     $gridColumn<?= $rel[1] ?> = [
@@ -137,6 +140,7 @@ if($provider<?= $rel[1] ?>->totalCount){
 }
 <?= "?>\n" ?>
 
+        </div>
     </div>
 <?php elseif(empty($rel[2])): ?>
     <?="<?php if(!is_null(\$model->$name)): ?>\n"?>

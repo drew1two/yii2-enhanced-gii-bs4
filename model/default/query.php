@@ -18,6 +18,8 @@ echo "<?php\n";
 
 namespace <?= $generator->queryNs ?>;
 
+use yii\db\ActiveQuery;
+
 /**
  * This is the ActiveQuery class for [[<?= $modelFullClassName ?>]].
  *
