@@ -62,7 +62,10 @@ class Generator extends BaseGenerator {
     public $isBaseIdentityClass = false;
     public $generateYiiUserModelMethods = false;
     public $generateStatusDeclarations = false;
+    public $useStatusTrait = false;
     public $UUIDColumn = 'id';
+    public $nsTrait = 'common\traits';
+    public $nsInterface = 'common\interfaces';
 
     /**
      * @inheritdoc
@@ -92,7 +95,7 @@ class Generator extends BaseGenerator {
             [['queryBaseClass', 'queryClass'], 'validateClass', 'params' => ['extends' => ActiveQuery::class]],
             [['db'], 'validateDb'],
             [['enableI18N', 'generateQuery', 'generateLabelsFromComments', 'isBaseIdentityClass', 'generateYiiUserModelMethods',
-                'generateStatusDeclarations', 'useTablePrefix', 'generateMigrations', 'generateAttributeHints', 'generateBaseOnly'], 'boolean'],
+                'useStatusTrait', 'generateStatusDeclarations', 'useTablePrefix', 'generateMigrations', 'generateAttributeHints', 'generateBaseOnly'], 'boolean'],
             [['generateRelations'], 'in', 'range' => [self::RELATIONS_NONE, self::RELATIONS_ALL, self::RELATIONS_ALL_INVERSE]],
             [['messageCategory'], 'validateMessageCategory', 'skipOnEmpty' => false],
 
@@ -126,6 +129,7 @@ class Generator extends BaseGenerator {
             'isBaseIdentityClass' => 'Is base Identity Class',
             'generateYiiUserModelMethods' => 'Generate Yii2 User Model Methods',
             'generateStatusDeclarations' => 'Generate Status declarations',
+            'useStatusTrait' => 'Use Status Trait',
             'deletedBy' => 'Column',
             'deletedByValue' => 'Value',
             'deletedByValueRestored' => 'Column Restored Value',
@@ -252,7 +256,8 @@ class Generator extends BaseGenerator {
                 . 'You usually re-generate models when you make changes on your database.',
             'isBaseIdentityClass' => 'This incorporates Identity class methods into base model',
             'generateYiiUserModelMethods' => 'Will generate yii2 User model methods ie:(findByUsername(), findByPasswordResetToken(), findByVerificationToken(), isPasswordResetTokenValid(), validatePassword(), setPassword(), generateAuthKey(), generatePasswordResetToken(), generateEmailVerificationToken(), removePasswordResetToken())',
-            'generateStatusDeclarations' => 'Will generate in Base model:- STATUS_ACTIVE=10, STATUS_INACTIVE=9, STATUS_DELETED=0'
+            'generateStatusDeclarations' => 'Will generate in Base model:- STATUS_ACTIVE=10, STATUS_INACTIVE=9, STATUS_DELETED=0',
+            'useStatusTrait' => 'Do not use with Generate Status Declarations'
         ]);
     }
 
@@ -328,6 +333,7 @@ class Generator extends BaseGenerator {
             $this->isBaseIdentityClass = ($this->isBaseIdentityClass === '1');
             $this->generateYiiUserModelMethods = ($this->generateYiiUserModelMethods === '1');
             $this->generateStatusDeclarations = ($this->generateStatusDeclarations === '1');
+            $this->useStatusTrait = ($this->useStatusTrait === '1');
 //            $this->controllerClass = $this->nsController . '\\' . $modelClassName . 'Controller';
             $params = [
                 'tableName' => $tableName,
@@ -340,7 +346,8 @@ class Generator extends BaseGenerator {
                 'isTree' => $this->isTree,
                 'isBaseIdentityClass' => $this->isBaseIdentityClass,
                 'generateYiiUserModelMethods' => $this->generateYiiUserModelMethods,
-                'generateStatusDeclarations' => $this->generateStatusDeclarations
+                'generateStatusDeclarations' => $this->generateStatusDeclarations,
+                'useStatusTrait' => $this->useStatusTrait
             ];
             // model :
             $files[] = new CodeFile(
@@ -349,6 +356,14 @@ class Generator extends BaseGenerator {
             if (!$this->generateBaseOnly) {
                 $files[] = new CodeFile(
                     Yii::getAlias('@' . str_replace('\\', '/', $this->nsModel)) . '/' . $modelClassName . '.php', $this->render('model-extended.php', $params)
+                );
+            }
+            if ($this->useStatusTrait) {
+                $files[] = new CodeFile(
+                    Yii::getAlias('@' . str_replace('\\', '/', $this->nsTrait)) . '/StatusTrait.php', $this->render('status-trait.php', $params)
+                );
+                $files[] = new CodeFile(
+                    Yii::getAlias('@' . str_replace('\\', '/', $this->nsInterface)) . '/StatusDefinition.php', $this->render('status-interface.php', $params)
                 );
             }
             // query :

@@ -12,19 +12,30 @@
  * @var array $relations list of relations (name => relation declaration)
  */
 
-echo "<?php\n";
-?>
+echo "<?php\n"; ?>
 
 namespace <?= $generator->nsModel ?>;
 
 use Yii;
 use <?= $generator->nsModel ?>\base\<?= $className ?> as Base<?= $className ?>;
+<?php if ($generator->useStatusTrait): ?>
+use common\interfaces\StatusDefinition;
+<?php endif; ?>
 
 /**
  * This is the model class for table "<?= $tableName ?>".
  */
-class <?= $className ?> extends Base<?= $className . "\n" ?>
+class <?= $className ?> extends Base<?= $className ?><?php echo ($generator->useStatusTrait) ? ' implements StatusDefinition' : '' ?><?php "\n" ?>
+
 {
+<?php if ($generator->useStatusTrait): ?>
+
+    use \common\traits\StatusTrait {
+        beforeSave as protected statusTraitBeforeSave;
+        afterSave as protected statusTraitAfterSave;
+    }
+
+<?php endif; ?>
 <?php if ($generator->generateYiiUserModelMethods) {
     $arr1 = "[['status'], 'default', 'value' => self::STATUS_INACTIVE]";
     $arr2 = "[['status'], 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED]]";
@@ -59,6 +70,31 @@ class <?= $className ?> extends Base<?= $className . "\n" ?>
 <?php endif; ?>
 <?php endforeach; ?>
         ];
+    }
+<?php endif; ?>
+
+<?php if ($generator->useStatusTrait): ?>
+    /**
+     * @param bool $insert
+     * @return bool
+     */
+    public function beforeSave($insert)
+    {
+        if (!parent::beforeSave($insert)) {
+            return false;
+        }
+        return $this->statusTraitBeforeSave($insert);
+    }
+
+    /**
+     * @param bool $insert
+     * @return void
+     */
+    public function afterSave($insert, $changedAttributes)
+    {
+        parent::afterSave($insert, $changedAttributes);
+
+        $this->statusTraitAfterSave($insert, $changedAttributes);
     }
 <?php endif; ?>
 }
