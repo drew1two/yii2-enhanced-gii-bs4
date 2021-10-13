@@ -68,6 +68,7 @@ echo $form->field($generator, 'queryBaseClass');
             <?= $form->field($generator, 'generateStatusDeclarations')->checkbox(); ?>
         </div>
         <div class="col-md-6">
+            <?= $form->field($generator, 'useStatusTrait')->checkbox(); ?>
         </div>
     </div>
 <?= $form->field($generator, 'optimisticLock'); ?>
