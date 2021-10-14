@@ -14,7 +14,7 @@ namespace common\traits;
 
 trait StatusTrait
 {
-    private string $_status;
+    private ?string $_status = null;
 
     /**
      * @return string Model status.
