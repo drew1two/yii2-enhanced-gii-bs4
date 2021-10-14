@@ -239,13 +239,13 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
 
 <?php if($generator->saveAsNew):?>
     /**
-    * Creates a new <?= $modelClass ?> model by another data,
-    * so user don't need to input all field from scratch.
-    * If creation is successful, the browser will be redirected to the 'view' page.
-    *
-    * @param mixed $id
-    * @return mixed
-    */
+     * Creates a new <?= $modelClass ?> model by another data,
+     * so user don't need to input all field from scratch.
+     * If creation is successful, the browser will be redirected to the 'view' page.
+     *
+     * @param mixed $id
+     * @return mixed
+     */
     public function actionSaveAsNew(<?= $actionParams; ?>) {
         $model = new <?= $modelClass ?>();
 
@@ -293,13 +293,14 @@ if (count($pks) === 1) {
 <?php if ($rel[2] && isset($rel[3]) && !in_array($name, $generator->skippedRelations)): ?>
     
     /**
-    * Action to load a tabular form grid
-    * for <?= $rel[1] . "\n" ?>
-    * @author Yohanes Candrajaya <moo.tensai@gmail.com>
-    * @author Jiwantoro Ndaru <jiwanndaru@gmail.com>
-    *
-    * @return mixed
-    */
+     * Action to load a tabular form grid
+     * for <?= $rel[1] . "\n" ?>
+     * @author Yohanes Candrajaya <moo.tensai@gmail.com>
+     * @author Jiwantoro Ndaru <jiwanndaru@gmail.com>
+     *
+     * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
+     */
     public function actionAdd<?= $rel[1] ?>()
     {
         if (Yii::$app->request->isAjax) {
