@@ -592,8 +592,9 @@ class Generator extends \drew1two\enhancedgii\BaseGenerator
             $labelCol = $this->getNameAttributeFK($rel[3]);
 //            $modelRel = $rel[2] ? lcfirst(Inflector::pluralize($rel[1])) : lcfirst($rel[1]);
             $output = "[
-                'attribute' => '$rel[7].$labelCol',
-                'label' => " . $this->generateString(ucwords(Inflector::humanize($rel[5]))) . "
+                'attribute' => '$rel[5]',
+                'label' => " . $this->generateString(ucwords(Inflector::humanize($rel[5]))) . ",
+                'value' => " . '$model->' . $rel[7] . "->" . $labelCol . "
             ],\n";
             return $output;
         } else {
@@ -1030,7 +1031,7 @@ if (array_key_exists($attribute, $fk) && $attribute) {
 
         $rules = [];
         foreach ($types as $type => $columns) {
-            $rules[] = "[['" . implode("', '", $columns) . "'], '$type']";
+            $rules[] = "'".$type."Array' => [['" . implode("', '", $columns) . "'], '$type']";
         }
 
         return $rules;
