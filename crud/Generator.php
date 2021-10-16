@@ -548,8 +548,9 @@ class Generator extends \drew1two\enhancedgii\BaseGenerator
 //            $id = 'grid-' . Inflector::camel2id(StringHelper::basename($this->searchModelClass)) . '-' . $attribute;
 //            $modelRel = $rel[2] ? lcfirst(Inflector::pluralize($rel[1])) : lcfirst($rel[1]);
             $output = "[
-            'attribute' => '$rel[7].$labelCol',
+            'attribute' => '$rel[5].$labelCol',
             'label' => " . $this->generateString(ucwords(Inflector::humanize($rel[5]))) . ",
+            'value' => " . '$model->' . $rel[7] . "->" . $labelCol . "
         ],\n";
             return $output;
         } else {
