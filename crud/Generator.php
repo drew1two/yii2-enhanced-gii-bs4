@@ -876,7 +876,7 @@ if (array_key_exists($attribute, $fk) && $attribute) {
 //            $pk = empty($this->tableSchema->primaryKey) ? $this->tableSchema->getColumnNames()[0] : $this->tableSchema->primaryKey[0];
             $fkClassFQ = "\\" . $this->nsModel . "\\" . $rel[1];
             $output = "\$form->field($model, '$attribute')->widget(\\kartik\\widgets\\Select2::class, [
-        'data' => \\yii\\helpers\\ArrayHelper::map($fkClassFQ::find()->orderBy('$rel[4]')->asArray()->all(), '$rel[4]', '$labelCol'),
+        'data' => \\yii\\helpers\\ArrayHelper::map($fkClassFQ::find()->orderBy('$labelCol')->asArray()->all(), '$rel[4]', '$labelCol'),
         'options' => ['placeholder' => " . $this->generateString('Choose ' . $humanize) . "],
         'pluginOptions' => [
             'allowClear' => true
