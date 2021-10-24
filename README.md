@@ -1,3 +1,4 @@
+### yii2-enhanced-gii-bs4
 Just trying to bring mootensai's yii2-enhanced-gii up to date.
 
 This is an updated version of mootensai's yii2-enhanced-gii.
@@ -13,7 +14,16 @@ Meaning, we can just create a New User model that will include Yii2's default Us
 
 Haven't yet tested this with Kartik's tree-manager.
 
-Installation:- add the following to our composer.json
+### Installation:
+
+- run ```composer "drew1two/yii2-enhanced-gii-bs4" "*"```
+- or to our composer.json
+```JSON
+  "require": {
+"drew1two/yii2-enhanced-gii-bs4": "dev-master",
+  }
+```
+- or the following to our composer.json
 
 ```
 "drew1two/yii2-enhanced-gii-bs4": "dev-master",
