@@ -25,7 +25,7 @@
         "kartik-v/yii2-widgets": "v3.4.1",
         "kartik-v/yii2-export": "v1.4.1",
         "kartik-v/yii2-tabs-x": "v1.2.7",
-        "kartik-v/yii2-detail-view": "v1.8.3",
+        "kartik-v/yii2-detail-view": "v1.8.*",
         "kartik-v/yii2-helpers": "v1.3.9"
     },
     "autoload": {
