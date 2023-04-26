@@ -16,17 +16,17 @@
     ],
     "require": {
         "php": ">=7.3.0",
-        "yiisoft/yii2": "*",
-        "mootensai/yii2-uuid-behavior": "1.0.0",
-        "mootensai/yii2-jsblock": "1.0.0",
-        "mootensai/yii2-optimistic-lock-validator": "0.0.1",
-        "kartik-v/yii2-builder": "v1.6.7",
-        "kartik-v/yii2-grid": "v3.3.5",
-        "kartik-v/yii2-widgets": "v3.4.1",
-        "kartik-v/yii2-export": "v1.4.1",
-        "kartik-v/yii2-tabs-x": "v1.2.7",
-        "kartik-v/yii2-detail-view": "v1.8.*",
-        "kartik-v/yii2-helpers": "v1.3.9"
+        "yiisoft/yii2": ">=2.0.47",
+        "mootensai/yii2-uuid-behavior": "*",
+        "mootensai/yii2-jsblock": "*",
+        "mootensai/yii2-optimistic-lock-validator": "*",
+        "kartik-v/yii2-builder": "*",
+        "kartik-v/yii2-grid": "*",
+        "kartik-v/yii2-widgets": "*",
+        "kartik-v/yii2-export": "*",
+        "kartik-v/yii2-tabs-x": "*",
+        "kartik-v/yii2-detail-view": "*",
+        "kartik-v/yii2-helpers": "*"
     },
     "autoload": {
         "psr-4": {
